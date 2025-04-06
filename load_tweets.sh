@@ -14,7 +14,7 @@ for file in $files; do
     :
 done
 
-#echo 'load denormalized'
-#for file in $files; do
-#    unzip -p "$file" | sed 's/\\u0000//g' | psql "postgres://postgres:pass@localhost:11043" -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"
-#done
+echo 'load denormalized'
+for file in $files; do
+    unzip -p "$file" | sed 's/\\u0000//g' | psql "postgres://postgres:pass@localhost:11043" -c "COPY tweets_jsonb (data) FROM STDIN csv quote e'\x01' delimiter e'\x02';"
+done
